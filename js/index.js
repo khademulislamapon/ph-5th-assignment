@@ -1,3 +1,7 @@
+document.getElementById('blog-button').addEventListener('click', function(){
+    window.location.href = './blog.html';
+});
+
 function getInputValue(id) {
     return parseFloat(document.getElementById(id).value);
 };
@@ -30,23 +34,29 @@ function getBtn2ClassAdd(id) {
 };
 
 document.getElementById('btn-donation').addEventListener('click', function () {
-    getClassRemove('donate-section');
-    getClassAdd('history-section');
-
     getBtn2ClassAdd('btn-donation');
     getBtn2ClassRemove('btn-donation');
     getBtn1ClassRemove('btn-history');
     getBtn1ClassAdd('btn-history');
+    
+    getClassRemove('donate-section');
+    getClassRemove('footer-section');
+    getClassAdd('history-section');
 });
 
 document.getElementById('btn-history').addEventListener('click', function () {
-    getClassAdd('donate-section');
-    getClassRemove('history-section');
-
     getBtn2ClassAdd('btn-history');
     getBtn2ClassRemove('btn-history');
     getBtn1ClassRemove('btn-donation');
     getBtn1ClassAdd('btn-donation');
+
+    getClassAdd('donate-section');
+    getClassAdd('footer-section');
+    getClassRemove('history-section');
+
+    if(getInnerText('history-section')) {
+        getClassRemove('footer-section');
+    }
 });
 
 document.getElementById('donate-now-btn1').addEventListener('click', function () {
@@ -66,7 +76,6 @@ document.getElementById('donate-now-btn1').addEventListener('click', function ()
     document.getElementById('main-balance').innerText = myMainBalance;
     document.getElementById('donate-amount1').innerText = allDonateAmount1;
     document.getElementById('donate-input1').value = '';
-
 
     const historySection = document.createElement('div');
     historySection.setAttribute("class", "w-11/12 lg:w-10/12 mx-auto border border-zinc-200 rounded-2xl p-8 mb-6");
