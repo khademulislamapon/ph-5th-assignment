@@ -8,6 +8,9 @@ function getInputValue(id) {
 function getInnerTextNum(id) {
     return parseFloat(document.getElementById(id).innerText);
 };
+function getValue(id) {
+    return document.getElementById(id).value = '';
+};
 
 function getInnerText(id) {
     return document.getElementById(id).innerText;
@@ -38,12 +41,11 @@ document.getElementById('btn-donation').addEventListener('click', function () {
     getBtn2ClassRemove('btn-donation');
     getBtn1ClassRemove('btn-history');
     getBtn1ClassAdd('btn-history');
-    
+
     getClassRemove('donate-section');
     getClassRemove('footer-section');
     getClassAdd('history-section');
 });
-
 document.getElementById('btn-history').addEventListener('click', function () {
     getBtn2ClassAdd('btn-history');
     getBtn2ClassRemove('btn-history');
@@ -59,12 +61,12 @@ document.getElementById('btn-history').addEventListener('click', function () {
     }
 });
 
+// 1st
 document.getElementById('donate-now-btn1').addEventListener('click', function () {
     const donateInput1 = getInputValue('donate-input1');
-    // const donateAmount1 = getInnerTextNum('donate-amount1');
-    // const mainBalance = getInnerTextNum('main-balance');
 
     if (isNaN(donateInput1) || donateInput1 <= 0) {
+        getValue('donate-input1');
         return alert("Invalid Donation Amount");
     }
 
@@ -75,12 +77,64 @@ document.getElementById('donate-now-btn1').addEventListener('click', function ()
 
     document.getElementById('main-balance').innerText = myMainBalance;
     document.getElementById('donate-amount1').innerText = allDonateAmount1;
-    document.getElementById('donate-input1').value = '';
+    getValue('donate-input1');
 
     const historySection = document.createElement('div');
     historySection.setAttribute("class", "w-11/12 lg:w-10/12 mx-auto border border-zinc-200 rounded-2xl p-8 mb-6");
     historySection.innerHTML = `
         <div class="text-TextCol font-bold text-lg md:text-xl mb-4">${donateInput1} Taka is ${getInnerText('donate-heading1')}</div>
+        <div class="font-light text-sm md:text-base text-zinc-600">Date: ${new Date()}</div>
+    `;
+    document.getElementById('history-section').appendChild(historySection);
+});
+// 2nd
+document.getElementById('donate-now-btn2').addEventListener('click', function () {
+    const donateInput2 = getInputValue('donate-input2');
+
+    if (isNaN(donateInput2) || donateInput2 <= 0) {
+        getValue('donate-input2');
+        return alert("Invalid Donation Amount");
+    }
+
+    document.getElementById('my_modal_5').showModal();
+
+    const myMainBalance = getInnerTextNum('main-balance') - donateInput2;
+    const allDonateAmount2 = getInnerTextNum('donate-amount2') + donateInput2;
+
+    document.getElementById('main-balance').innerText = myMainBalance;
+    document.getElementById('donate-amount2').innerText = allDonateAmount2;
+    getValue('donate-input2');
+
+    const historySection = document.createElement('div');
+    historySection.setAttribute("class", "w-11/12 lg:w-10/12 mx-auto border border-zinc-200 rounded-2xl p-8 mb-6");
+    historySection.innerHTML = `
+        <div class="text-TextCol font-bold text-lg md:text-xl mb-4">${donateInput2} Taka is ${getInnerText('donate-heading2')}</div>
+        <div class="font-light text-sm md:text-base text-zinc-600">Date: ${new Date()}</div>
+    `;
+    document.getElementById('history-section').appendChild(historySection);
+});
+// 3rd
+document.getElementById('donate-now-btn3').addEventListener('click', function () {
+    const donateInput3 = getInputValue('donate-input3');
+
+    if (isNaN(donateInput3) || donateInput3 <= 0) {
+        getValue('donate-input3');
+        return alert("Invalid Donation Amount");
+    }
+
+    document.getElementById('my_modal_5').showModal();
+
+    const myMainBalance = getInnerTextNum('main-balance') - donateInput3;
+    const allDonateAmount3 = getInnerTextNum('donate-amount3') + donateInput3;
+
+    document.getElementById('main-balance').innerText = myMainBalance;
+    document.getElementById('donate-amount3').innerText = allDonateAmount3;
+    getValue('donate-input3');
+
+    const historySection = document.createElement('div');
+    historySection.setAttribute("class", "w-11/12 lg:w-10/12 mx-auto border border-zinc-200 rounded-2xl p-8 mb-6");
+    historySection.innerHTML = `
+        <div class="text-TextCol font-bold text-lg md:text-xl mb-4">${donateInput3} Taka is ${getInnerText('donate-heading3')}</div>
         <div class="font-light text-sm md:text-base text-zinc-600">Date: ${new Date()}</div>
     `;
     document.getElementById('history-section').appendChild(historySection);
