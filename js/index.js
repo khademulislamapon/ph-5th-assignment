@@ -11,9 +11,17 @@ function getInnerTextNum(id) {
 function getValue(id) {
     return document.getElementById(id).value = '';
 };
-
 function getInnerText(id) {
     return document.getElementById(id).innerText;
+};
+function isValidNumber(id) {
+    const input = document.getElementById(id).value;
+    const number = parseFloat(input);
+
+    const parsedString = String(number);
+    const remainingString = input.slice(parsedString.length).trim();
+
+    return remainingString.length !== 0;
 };
 
 function getClassRemove(id) {
@@ -65,7 +73,7 @@ document.getElementById('btn-history').addEventListener('click', function () {
 document.getElementById('donate-now-btn1').addEventListener('click', function () {
     const donateInput1 = getInputValue('donate-input1');
 
-    if (isNaN(donateInput1) || donateInput1 <= 0 || donateInput1 > getInnerTextNum('main-balance')) {
+    if (isNaN(donateInput1) || isValidNumber('donate-input1') || donateInput1 <= 0 || donateInput1 > getInnerTextNum('main-balance')) {
         getValue('donate-input1');
         return alert("Invalid Donation Amount");
     }
@@ -91,7 +99,7 @@ document.getElementById('donate-now-btn1').addEventListener('click', function ()
 document.getElementById('donate-now-btn2').addEventListener('click', function () {
     const donateInput2 = getInputValue('donate-input2');
 
-    if (isNaN(donateInput2) || donateInput2 <= 0 || donateInput2 > getInnerTextNum('main-balance')) {
+    if (isNaN(donateInput2) || isValidNumber('donate-input2') || donateInput2 <= 0 || donateInput2 > getInnerTextNum('main-balance')) {
         getValue('donate-input2');
         return alert("Invalid Donation Amount");
     }
@@ -117,7 +125,7 @@ document.getElementById('donate-now-btn2').addEventListener('click', function ()
 document.getElementById('donate-now-btn3').addEventListener('click', function () {
     const donateInput3 = getInputValue('donate-input3');
 
-    if (isNaN(donateInput3) || donateInput3 <= 0 || donateInput3 > getInnerTextNum('main-balance')) {
+    if (isNaN(donateInput3) || isValidNumber('donate-input3') || donateInput3 <= 0 || donateInput3 > getInnerTextNum('main-balance')) {
         getValue('donate-input3');
         return alert("Invalid Donation Amount");
     }
